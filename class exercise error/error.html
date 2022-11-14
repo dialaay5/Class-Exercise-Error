@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Class Exercise</title>
+    <style>
+        .btn{font-size: 30px;
+              margin:auto;
+              display:block;
+              background-color: rgb(227, 191, 150);
+              border-radius: 5px;
+              font-family:serif}
+
+        body{background-color: rgb(252, 238, 221);
+             text-align: center;}
+        h1{font-size: 60px;
+           font-family:serif}
+        p{font-size: 30px;
+          font-family:serif;}
+        .op{font-size: 20px}
+
+    </style>
+</head>
+<body>
+    <h1> Shopping Cart </h1>
+    <form>
+        <p>Product Names : <select class="op" name="options" id="options">
+            <option  value="mango">mango</option>
+            <option  value="apple">apple</option>
+            <option  value="kiwi">kiwi</option>
+            <option  value="orange">orange</option>
+            <option  value="banana">banana</option>
+            </select></p>
+            <p>Units Number = <input id="id_units" type="number" /></p>
+    </form>  
+    <button onclick="buyItem()" class="btn">Add to cart</button><br>
+
+    <script>
+       const storageList= {"mango": 20, 
+                         "apple": 10, 
+                         "kiwi": 15,
+                         "orange": 23, 
+                         "banana": 8}
+        
+
+        function buyItem(){
+            let units_num = parseInt(document.getElementById('id_units').value)
+            let product = (document.getElementById('options').value)
+        try { 
+            if (units_num <= storageList[product]){
+               let error = new Error ((storageList[product] - units_num ) +   "units left")
+               throw error;
+            }  
+            else{ let error = new Error ("sorry we dont have enough")
+               throw error;
+            } 
+        }
+        catch(error) {
+            console.log(error.message)
+            console.log(error)
+        }
+    }
+    </script>
+   
+</body>
+</html>
